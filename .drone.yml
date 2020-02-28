@@ -5,7 +5,7 @@ name: default
 
 steps:
 - name: test
-  image: golang:1.13
+  image: golang:1.13-alpine
   environment:
     USERNAME:
       from_secret: username
