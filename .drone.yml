@@ -1,0 +1,15 @@
+---
+
+kind: pipeline
+name: default
+
+steps:
+- name: test
+  image: golang:1.13
+  environment:
+    USERNAME:
+      from_secret: username
+  commands:
+  - go build
+  - go test -v
+  - echo $USERNAME > build.txt
