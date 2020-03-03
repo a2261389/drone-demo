@@ -13,6 +13,9 @@ steps:
   image: plugins/slack
   settings:
     channel: server_messages
-    secrets: [ slack_webhook_url ]
+    environment:
+      repo: a2261389/drone-demo
+      webhook:
+        from_secret: slack_webhook_url
     when:
       status: [ success, failure ]
