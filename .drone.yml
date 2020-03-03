@@ -8,3 +8,18 @@ steps:
   commands:
   - go build
   - go test -v
+
+- name: notify
+  image: plugins/slack
+  settings:
+    channel: server_messages
+    username: drone
+    environment:
+      webhook:
+        from_secret: slack_webhook_url
+    template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
