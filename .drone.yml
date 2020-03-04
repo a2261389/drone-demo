@@ -40,14 +40,8 @@ steps:
         status: [success, failure]
       template: >
         {{#success build.status}}
-          Repo name: {{repo.name}}
-          Commit author: {{build.author}}
-          Commit: {{build.commit}} [{{build.branch}}]
-          Message: go build {{build.number}} succeeded.
-          Duration: {{since build.created}}
+          [{{repo.name}}] {{build.commit}} [{{build.branch}}] {{build.number}} Succeeded by {{build.author}}
         {{else}}
-          Repo name: {{repo.name}}
-          Commit author: {{build.author}}
-          Commit: {{build.commit}} [{{build.branch}}]
-          go build {{build.number}} failed.
+          [{{repo.name}}] {{build.commit}} [{{build.branch}}] {{build.number}} Failed by {{build.author}}
+         Details: {{build.link}}
         {{/success}}
