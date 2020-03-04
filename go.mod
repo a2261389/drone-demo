@@ -1,4 +1,4 @@
-module gin-server
+module github.com/a2261389/drone-demo
 
 go 1.13
 
