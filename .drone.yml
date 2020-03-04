@@ -13,6 +13,13 @@ steps:
   image: plugins/slack
   settings:
     channel: server_messages
-    secrets: [ slack_webhook_url ]
+    webhook:
+      from_secret: slack_webhook_url
     when:
       status: [ success, failure ]
+    template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
