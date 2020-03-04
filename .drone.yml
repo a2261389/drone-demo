@@ -41,10 +41,10 @@ steps:
       template: >
         {{#success build.status}}
           Repo name: {{repo.name}}
-          Commit author: {{build.author}}
+          Commit author: {{build.Author}}
           Commit: {{build.commit}} [{{build.branch}}]
           go build {{build.number}} succeeded. Good job.
-          since: {{since build.started}}
+          duration: {{since build.created}}
         {{else}}
           Repo name: {{repo.name}}
           Commit author: {{build.author}}
