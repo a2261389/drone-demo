@@ -40,9 +40,8 @@ steps:
         status: [success, failure]
       template: >
         {{#success build.status}}
-          [{{repo.name}}] {{truncate build.sha 8}} [{{build.branch}}] {{build.number}} Succeeded
-          {{build}}
+          [{{repo.name}}] {{truncate build.commit 8}} [{{build.branch}}] {{build.number}} Succeeded
         {{else}}
-          [{{repo.name}}] {{truncate build.sha 8}} [{{build.branch}}] {{build.number}} Failed by {{build.author}}
+          [{{repo.name}}] {{truncate build.commit 8}} [{{build.branch}}] {{build.number}} Failed
          Details: {{build.link}}
         {{/success}}
