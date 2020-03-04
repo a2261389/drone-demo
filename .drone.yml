@@ -9,6 +9,22 @@ steps:
   - go build
   - go test -v
 
+- name: ssh commands
+  image: appleboy/drone-ssh
+  settings:
+    host:
+      from_secret: ssh_host
+    username:
+      from_secret: ssh_username
+    port:
+      from_secret: ssh_port
+    key:
+      from_secret: ssh_key
+    passphrase:
+      from_secret: ssh_passphrase
+    script:
+      - mkdir test0002
+
 - name: notify
   image: plugins/slack
   settings:
