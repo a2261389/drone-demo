@@ -39,8 +39,11 @@ steps:
       when:
         status: [success, failure]
       template: >
+        Commit author:{{build.author}}
+        Commit sha:{{build.commit}}
         {{#success build.status}}
-          build {{build.number}} succeeded. Good job.
+          go build {{build.number}} succeeded. Good job.
+          spend {{build.started - build.created}}s.
         {{else}}
-          build {{build.number}} failed. Fix me please.
+          go build {{build.number}} failed. Fix me please.
         {{/success}}
