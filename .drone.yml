@@ -1,41 +1,40 @@
 ---
-
 kind: pipeline
 name: default
 steps:
-- name: test
-  image: golang:1.13-alpine
-  commands:
-  - go build
-  - go test -v
+  - name: test
+    image: golang:1.13-alpine
+    commands:
+      - go build
+      - go test -v
 
-- name: ssh commands
-  image: appleboy/drone-ssh
-  settings:
-    host:
-      from_secret: ssh_host
-    username:
-      from_secret: ssh_username
-    port:
-      from_secret: ssh_port
-    key:
-      from_secret: ssh_key
-    passphrase:
-      from_secret: ssh_passphrase
-    script:
-      - mkdir testing
+  - name: ssh commands
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: ssh_host
+      username:
+        from_secret: ssh_username
+      port:
+        from_secret: ssh_port
+      key:
+        from_secret: ssh_key
+      passphrase:
+        from_secret: ssh_passphrase
+      script:
+        - mkdir testing
 
-- name: notify
-  image: plugins/slack
-  settings:
-    channel: server_messages
-    webhook:
-      from_secret: slack_webhook_url
-    when:
-      status: [ success, failure ]
-    template: >
-      {{#success build.status}}
-        build {{build.number}} succeeded. Good job.
-      {{else}}
-        build {{build.number}} failed. Fix me please.
-      {{/success}}
+  - name: notify
+    image: plugins/slack
+    settings:
+      channel: server_messages
+      webhook:
+        from_secret: slack_webhook_url
+      when:
+        status: [success, failure]
+      template: >
+        {{#success build.status}}
+          build {{build.number}} succeeded. Good job.
+        {{else}}
+          build {{build.number}} failed. Fix me please.
+        {{/success}}
