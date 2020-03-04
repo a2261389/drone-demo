@@ -43,7 +43,8 @@ steps:
         Commit sha:{{build.commit}}
         {{#success build.status}}
           go build {{build.number}} succeeded. Good job.
-          spend {{build.started - build.created}}s.
+          started_at {{build.started}}
+          created_at {{build.created}}
         {{else}}
           go build {{build.number}} failed. Fix me please.
         {{/success}}
