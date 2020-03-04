@@ -27,12 +27,13 @@ steps:
       passphrase:
         from_secret: ssh_passphrase
       script:
-        - mkdir testing
+        - sh deploy.sh
 
   - name: notify
     image: plugins/slack
     settings:
       channel: server_messages
+      username: drone
       webhook:
         from_secret: slack_webhook_url
       when:
