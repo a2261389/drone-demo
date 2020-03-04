@@ -1,6 +1,6 @@
 module github.com/a2261389/drone-demo
 
-go 1.13
+go 1.14
 
 require (
 	github.com/gin-contrib/cors v1.3.0
