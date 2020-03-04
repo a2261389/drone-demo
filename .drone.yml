@@ -39,14 +39,18 @@ steps:
       when:
         status: [success, failure]
       template: >
-        Repo name: {{repo.name}} \n
-        Commit author: {{build.author}} \n
-        Commit sha: {{build.commit}} \n
-        Branch: {{build.branch}} \n
         {{#success build.status}}
+          Repo name: {{repo.name}}
+          Commit author: {{build.author}}
+          Commit sha: {{build.commit}}
+          Branch: {{build.branch}}
           go build {{build.number}} succeeded. Good job.
           created_at {{build.created}}
           started_at {{build.started}}
         {{else}}
+          Repo name: {{repo.name}}
+          Commit author: {{build.author}}
+          Commit sha: {{build.commit}}
+          Branch: {{build.branch}}
           go build {{build.number}} failed. Fix me please.
         {{/success}}
