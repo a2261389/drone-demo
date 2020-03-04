@@ -16,16 +16,14 @@ steps:
       from_secret: ssh_host
     username:
       from_secret: ssh_username
-    password:
-      from_secret: ssh_password
     port:
       from_secret: ssh_port
-    # key:
-    #   from_secret: ssh_key
-    # passphrase:
-    #   from_secret: ssh_passphrase
+    key:
+      from_secret: ssh_key
+    passphrase:
+      from_secret: ssh_passphrase
     script:
-      - mkdir test0002
+      - mkdir testing
 
 - name: notify
   image: plugins/slack
