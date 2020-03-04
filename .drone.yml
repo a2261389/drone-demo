@@ -5,9 +5,9 @@ steps:
   - name: test
     image: golang:1.13-alpine
     environment:
-      - GOOS=linux
-      - GOARCH=amd64
-      - CGO_ENABLED=0
+      GOOS: linux
+      GOARCH: amd64
+      CGO_ENABLED: 0
     commands:
       - go mod download
       - go build
